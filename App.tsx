@@ -18,25 +18,25 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen relative overflow-x-hidden">
       {/* Animated Mesh Gradients */}
-      <motion.div 
-        animate={{ 
-          x: [0, 50, 0], 
+      <motion.div
+        animate={{
+          x: [0, 50, 0],
           y: [0, -30, 0],
           scale: [1, 1.1, 1]
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="blob w-[600px] h-[600px] bg-purple-200/40 top-[-200px] left-[-200px]"
+        className="blob w-[600px] h-[600px] bg-purple-200/40 top-[-200px] left-[-200px] will-change-transform"
       />
-      <motion.div 
-        animate={{ 
-          x: [0, -40, 0], 
+      <motion.div
+        animate={{
+          x: [0, -40, 0],
           y: [0, 60, 0],
           scale: [1, 1.2, 1]
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="blob w-[500px] h-[500px] bg-indigo-100/40 bottom-[20%] right-[-100px]"
+        className="blob w-[500px] h-[500px] bg-indigo-100/40 bottom-[20%] right-[-100px] will-change-transform"
       />
-      
+
       <Navbar />
       <main>
         <div id="home"><Hero /></div>

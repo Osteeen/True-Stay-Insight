@@ -131,16 +131,18 @@ const FAQ: React.FC = () => {
     <section className="py-32 px-6 bg-gray-50/50" id="faq">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             className="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4"
           >
             Support
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-gray-900"
           >
             Frequently Asked Questions
@@ -157,11 +159,10 @@ const FAQ: React.FC = () => {
                   setActiveCategory(i);
                   setOpenIdx(null);
                 }}
-                className={`w-full text-left px-6 py-4 rounded-2xl font-bold transition-all ${
-                  activeCategory === i 
-                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' 
+                className={`w-full text-left px-6 py-4 rounded-2xl font-bold transition-all ${activeCategory === i
+                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-200'
                     : 'text-gray-500 hover:bg-white hover:text-gray-900'
-                }`}
+                  }`}
               >
                 {cat.title}
               </button>
@@ -181,12 +182,12 @@ const FAQ: React.FC = () => {
               >
                 {categories[activeCategory].items.map((item, i) => (
                   <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                    <button 
+                    <button
                       onClick={() => setOpenIdx(openIdx === i ? null : i)}
                       className="w-full p-6 text-left flex justify-between items-center group"
                     >
                       <span className="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors leading-tight">{item.q}</span>
-                      <motion.span 
+                      <motion.span
                         animate={{ rotate: openIdx === i ? 45 : 0 }}
                         className={`text-2xl font-light ml-4 shrink-0 ${openIdx === i ? 'text-purple-600' : 'text-gray-300'}`}
                       >

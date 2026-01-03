@@ -30,6 +30,8 @@
 @layer components {
   .purple-gradient {
     background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
   }
   
   .text-purple-accent {
@@ -46,9 +48,15 @@
   
   .blob {
     filter: blur(80px);
+    -webkit-filter: blur(80px);
     border-radius: 50%;
     position: absolute;
     z-index: -1;
+    transform: translateZ(0); /* Force hardware acceleration */
+    -webkit-transform: translate3d(0, 0, 0); /* Force hardware acceleration for Safari */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
   }
 }
 

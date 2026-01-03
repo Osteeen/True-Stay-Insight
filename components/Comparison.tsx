@@ -15,19 +15,20 @@ const Comparison: React.FC = () => {
     <section className="py-32 px-6 bg-gray-50/30">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16 px-4">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold text-gray-900"
           >
             Manual Surveys vs Truestayinsight
           </motion.h2>
         </div>
-        
+
         {/* Mobile View: Card-based comparison */}
         <div className="md:hidden space-y-6">
           {metrics.map((m, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -74,7 +75,7 @@ const Comparison: React.FC = () => {
             </table>
           </div>
         </div>
-        
+
         <div className="mt-12 text-center">
           <p className="text-gray-400 font-medium italic">Transform your post-stay listening strategy today.</p>
         </div>

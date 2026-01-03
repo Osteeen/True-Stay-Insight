@@ -13,36 +13,38 @@ const Process: React.FC = () => {
     <section className="py-32 px-6 bg-white overflow-hidden" id="how-it-works">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-24">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             className="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4"
           >
             Our Process
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-gray-900"
           >
             Insights in Motion
           </motion.h2>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
           {/* Animated background line */}
           <div className="hidden md:block absolute top-[45px] left-[15%] right-[15%] h-[1px] bg-gray-100 -z-10 overflow-hidden">
-            <motion.div 
+            <motion.div
               initial={{ x: '-100%' }}
               whileInView={{ x: '100%' }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               className="w-1/2 h-full bg-gradient-to-r from-transparent via-purple-300 to-transparent"
             />
           </div>
-          
+
           {steps.map((step, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

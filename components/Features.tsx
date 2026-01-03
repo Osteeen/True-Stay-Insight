@@ -19,16 +19,18 @@ const Features: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               className="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4"
             >
               The Platform
             </motion.div>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
             >
@@ -36,17 +38,17 @@ const Features: React.FC = () => {
               <span className="text-gray-400">Without Compromise.</span>
             </motion.h2>
           </div>
-          <button 
+          <button
             onClick={() => window.open(calendlyUrl, '_blank')}
             className="px-8 py-4 bg-white border border-gray-200 rounded-full font-bold text-gray-600 hover:bg-gray-50 transition-all flex items-center gap-2 group"
           >
             Book a discovery call <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

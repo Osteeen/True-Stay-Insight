@@ -10,23 +10,25 @@ const Dashboard: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="max-w-xl">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6"
             >
               Command Center for <br className="hidden md:block" /> Guest Experience
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="text-gray-500 text-lg font-light leading-relaxed"
             >
               Real-time visibility into every post-stay interaction. Track trends, manage escalations, and recover guests before they leave a review.
             </motion.p>
           </div>
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.05 }}
             onClick={() => window.open(calendlyUrl, '_blank')}
             className="flex items-center gap-2 text-purple-600 font-bold hover:text-purple-700 transition-colors px-8 py-4 rounded-full bg-purple-50 border border-purple-100 w-full md:w-auto justify-center"
@@ -36,7 +38,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Dashboard Frame */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -92,10 +94,11 @@ const Dashboard: React.FC = () => {
                 <h3 className="text-sm font-bold text-gray-400 uppercase mb-6">Sentiment Trend</h3>
                 <div className="h-24 relative flex items-end gap-1">
                   {[40, 60, 45, 80, 70, 90, 85].map((h, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       initial={{ height: 0 }}
                       whileInView={{ height: `${h}%` }}
+                      viewport={{ once: true }}
                       className="flex-1 purple-gradient opacity-80 rounded-t-sm"
                     />
                   ))}
@@ -147,11 +150,10 @@ const TableRow = ({ name, sub, status, sentiment, issues, isEscalated = false, i
       <div className="text-xs text-gray-400">{sub}</div>
     </td>
     <td className="py-5">
-      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase whitespace-nowrap ${
-        isEscalated ? 'bg-rose-50 text-rose-600' : 
-        isScheduled ? 'bg-gray-100 text-gray-400' : 
-        'bg-emerald-50 text-emerald-600'
-      }`}>
+      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase whitespace-nowrap ${isEscalated ? 'bg-rose-50 text-rose-600' :
+          isScheduled ? 'bg-gray-100 text-gray-400' :
+            'bg-emerald-50 text-emerald-600'
+        }`}>
         {isEscalated ? '⚠ ' : ''}{status}
       </span>
     </td>
@@ -178,11 +180,12 @@ const IssueProgress = ({ label, value, color }: any) => (
       <span className="text-gray-400">{value}%</span>
     </div>
     <div className="w-full h-1 bg-gray-50 rounded-full overflow-hidden">
-      <motion.div 
+      <motion.div
         initial={{ width: 0 }}
         whileInView={{ width: `${value}%` }}
+        viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className={`h-full bg-purple-500`} 
+        className={`h-full bg-purple-500`}
       />
     </div>
   </div>

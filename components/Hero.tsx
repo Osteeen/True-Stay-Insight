@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 text-purple-700 text-xs font-bold mb-8 border border-purple-100 shadow-sm">
             <span className="relative flex h-2 w-2">
@@ -22,31 +22,31 @@ const Hero: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           className="text-6xl md:text-8xl font-bold tracking-tight text-gray-900 mb-8 leading-[1.1]"
         >
           Capture the feedback <br />
-          <span className="text-transparent bg-clip-text purple-gradient">guests won't write.</span>
+          <span className="text-transparent bg-clip-text purple-gradient" style={{ WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>guests won't write.</span>
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
           className="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed font-light"
         >
           Truestayinsight automatically calls your guests after checkout to capture natural feedback, detect issues early, and prevent negative public reviews.
         </motion.p>
-        
+
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
           {/* Sample Call Card moved to first position */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             className="flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-gray-200 p-3 pr-8 rounded-2xl shadow-xl shadow-gray-200/40 cursor-pointer hover:border-purple-300 transition-all group order-2 md:order-1"
           >
             <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center relative group-hover:bg-emerald-100 transition-colors">
@@ -64,10 +64,10 @@ const Hero: React.FC = () => {
           </motion.div>
 
           {/* Book a call button moved to second position */}
-          <motion.button 
+          <motion.button
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
             onClick={() => window.open(calendlyUrl, '_blank')}
             className="px-12 py-5 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-2xl shadow-purple-300/50 w-full md:w-auto hover:scale-105 active:scale-95 text-lg order-1 md:order-2"
           >
@@ -76,12 +76,12 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <motion.div 
+      <motion.div
         animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 right-[10%] w-24 h-24 bg-purple-100/50 rounded-3xl blur-sm -z-0"
       />
-      <motion.div 
+      <motion.div
         animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         className="absolute bottom-1/4 left-[5%] w-32 h-32 bg-indigo-50/50 rounded-full blur-md -z-0"
