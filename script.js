@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Mobile Scroll Interaction Observer ---
   // Triggers 'hover' styles when elements are centered in viewport on mobile
   const interactionObserver = new IntersectionObserver((entries) => {
+    // Only apply scroll interaction classes on mobile devices
+    if (window.innerWidth >= 768) {
+      entries.forEach(entry => entry.target.classList.remove('is-active'));
+      return;
+    }
+
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-active');
