@@ -261,3 +261,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial Render
   renderFAQ();
 });
+
+function showSampleMessage() {
+  const btn = document.querySelector('[onclick="showSampleMessage()"]');
+  const originalText = btn.querySelector('.text-sm').innerText;
+
+  if (btn.dataset.locked) return;
+  btn.dataset.locked = "true";
+
+  btn.querySelector('.text-sm').innerText = "Audio coming soon!";
+  btn.querySelector('.text-sm').classList.add('text-purple-600');
+
+  setTimeout(() => {
+    btn.querySelector('.text-sm').innerText = originalText;
+    btn.querySelector('.text-sm').classList.remove('text-purple-600');
+    delete btn.dataset.locked;
+  }, 2000);
+}
