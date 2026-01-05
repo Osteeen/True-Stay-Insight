@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       faqCategoriesEl.innerHTML = categories.map((cat, i) => `
           <button 
             onclick="switchCategory(${i})"
-            class="w-full text-left px-6 py-4 rounded-2xl font-bold transition-all ${activeCategory === i ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' : 'text-gray-500 hover:bg-white hover:text-gray-900'}"
+            class="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${activeCategory === i ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' : 'text-gray-500 hover:bg-white hover:text-gray-900'}"
           >
             ${cat.title}
           </button>
@@ -162,28 +162,41 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // Mobile Render (Interleaved List)
+    // Mobile Render (Interleaved List with Tabs)
     if (faqMobileEl) {
-      faqMobileEl.innerHTML = categories.map((cat) => `
-              <div class="space-y-4">
-                <h3 class="text-xl font-bold text-gray-900 px-2">${cat.title}</h3>
-                <div class="space-y-4">
-                  ${cat.items.map((item) => `
-                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                      <button onclick="toggleAccordion(this)" class="w-full p-6 text-left flex justify-between items-center group">
-                        <span class="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors leading-tight">${item.q}</span>
-                        <span class="text-2xl font-light ml-4 shrink-0 text-gray-300 accordion-icon transition-transform duration-300">+</span>
-                      </button>
-                      <div class="accordion-content h-0 overflow-hidden accordion-transition opacity-0">
-                        <div class="px-6 pb-6 text-gray-500 leading-relaxed text-lg border-t border-gray-50 pt-4">
-                          ${item.a}
-                        </div>
-                      </div>
+      faqMobileEl.innerHTML = `
+        <div class="flex gap-2 overflow-x-auto pb-4 -mx-6 px-6 no-scrollbar mb-4">
+          ${categories.map((cat, i) => `
+            <button 
+              onclick="switchCategory(${i})"
+              class="whitespace-nowrap px-4 py-2 rounded-full text-sm font-bold transition-all ${activeCategory === i ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' : 'bg-white text-gray-500 border border-gray-100'}"
+            >
+              ${cat.title}
+            </button>
+          `).join('')}
+        </div>
+        
+        <div class="animate-fade-slide">
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold text-gray-900 px-2">${categories[activeCategory].title}</h3>
+            <div class="space-y-4">
+              ${categories[activeCategory].items.map((item) => `
+                <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <button onclick="toggleAccordion(this)" class="w-full p-6 text-left flex justify-between items-center group">
+                    <span class="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors leading-tight">${item.q}</span>
+                    <span class="text-2xl font-light ml-4 shrink-0 text-gray-300 accordion-icon transition-transform duration-300">+</span>
+                  </button>
+                  <div class="accordion-content h-0 overflow-hidden accordion-transition opacity-0">
+                    <div class="px-6 pb-6 text-gray-500 leading-relaxed text-lg border-t border-gray-50 pt-4">
+                      ${item.a}
                     </div>
-                  `).join('')}
+                  </div>
                 </div>
-              </div>
-            `).join('');
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
     }
   }
 
