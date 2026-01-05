@@ -121,14 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render Content
         faqContentEl.innerHTML = `
-      <div class="space-y-4 fade-in-section is-visible">
+      <div class="space-y-4 animate-fade-slide">
         ${categories[activeCategory].items.map((item, i) => `
           <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
             <button onclick="toggleAccordion(this)" class="w-full p-6 text-left flex justify-between items-center group">
               <span class="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors leading-tight">${item.q}</span>
               <span class="text-2xl font-light ml-4 shrink-0 text-gray-300 accordion-icon transition-transform duration-300">+</span>
             </button>
-            <div class="accordion-content h-0 overflow-hidden transition-[height,opacity] duration-300 ease-in-out opacity-0">
+            <div class="accordion-content h-0 overflow-hidden accordion-transition opacity-0">
               <div class="px-6 pb-6 text-gray-500 leading-relaxed text-lg border-t border-gray-50 pt-4">
                 ${item.a}
               </div>
