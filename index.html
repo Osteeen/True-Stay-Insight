@@ -196,7 +196,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
           <!-- Items will be more static here but still styled -->
           <div
-            class="bg-white p-10 rounded-[2.5rem] shadow-soft hover:shadow-2xl transition-all border border-gray-100 group relative overflow-hidden">
+            class="bg-white p-10 rounded-[2.5rem] shadow-soft hover:shadow-2xl transition-all border border-gray-100 group relative overflow-hidden scroll-trigger">
             <div
               class="absolute top-0 left-0 w-full h-1 bg-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
             </div>
@@ -208,7 +208,7 @@
               personal, making guests more likely to share their thoughts than through email links.</p>
           </div>
           <div
-            class="bg-white p-10 rounded-[2.5rem] shadow-soft hover:shadow-2xl transition-all border border-gray-100 group relative overflow-hidden">
+            class="bg-white p-10 rounded-[2.5rem] shadow-soft hover:shadow-2xl transition-all border border-gray-100 group relative overflow-hidden scroll-trigger">
             <div
               class="absolute top-0 left-0 w-full h-1 bg-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
             </div>
@@ -220,7 +220,7 @@
               that surveys miss through natural, open-ended voice dialogue.</p>
           </div>
           <div
-            class="bg-white p-10 rounded-[2.5rem] shadow-soft hover:shadow-2xl transition-all border border-gray-100 group relative overflow-hidden">
+            class="bg-white p-10 rounded-[2.5rem] shadow-soft hover:shadow-2xl transition-all border border-gray-100 group relative overflow-hidden scroll-trigger">
             <div
               class="absolute top-0 left-0 w-full h-1 bg-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
             </div>
@@ -252,7 +252,7 @@
             </div>
           </div>
 
-          <div class="text-center group">
+          <div class="text-center group scroll-trigger">
             <div
               class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-white border border-gray-100 shadow-xl mb-8 group-hover:border-purple-200 transition-all relative">
               <div
@@ -264,7 +264,7 @@
             <p class="text-gray-500 leading-relaxed text-lg px-4">A seamless integration with your PMS triggers the
               feedback process the moment a guest departs.</p>
           </div>
-          <div class="text-center group">
+          <div class="text-center group scroll-trigger">
             <div
               class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-white border border-gray-100 shadow-xl mb-8 group-hover:border-purple-200 transition-all relative">
               <div
@@ -276,7 +276,7 @@
             <p class="text-gray-500 leading-relaxed text-lg px-4">Our AI reaches out at the optimal time with a warm,
               conversational tone to ask about their stay.</p>
           </div>
-          <div class="text-center group">
+          <div class="text-center group scroll-trigger">
             <div
               class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-white border border-gray-100 shadow-xl mb-8 group-hover:border-purple-200 transition-all relative">
               <div
@@ -307,7 +307,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="features-grid">
           <!-- Populated by JS for cleanness or just static here. I'll make it static for simplicity. -->
           <div
-            class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card">
+            class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card scroll-trigger">
             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 text-gray-400 text-[10px] font-bold uppercase mb-8 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
               <span class="w-1 h-1 rounded-full bg-current"></span>Intelligence
@@ -441,7 +441,6 @@
             <div class="lg:col-span-2 bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100">
               <div class="flex justify-between items-center mb-6">
                 <h3 class="text-lg font-bold text-gray-900">Recent Interactions</h3>
-                <button class="text-sm font-bold text-purple-600 hover:underline">View All</button>
               </div>
               <div class="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
                 <table class="w-full text-left min-w-[500px]">
@@ -727,14 +726,19 @@
 
         <div class="flex flex-col md:flex-row gap-12">
           <!-- Category Tabs -->
-          <div class="w-full md:w-1/4 space-y-2" id="faq-categories">
+          <div class="hidden md:block w-full md:w-1/4 space-y-2" id="faq-categories">
             <!-- Populated by JS -->
           </div>
 
           <!-- Accordion -->
-          <div class="w-full md:w-3/4 space-y-4" id="faq-content">
+          <div class="hidden md:block w-full md:w-3/4 space-y-4" id="faq-content">
             <!-- Populated by JS -->
           </div>
+        </div>
+
+        <!-- Mobile Specific Container -->
+        <div id="faq-mobile" class="md:hidden w-full space-y-8 mt-12">
+          <!-- Populated by JS -->
         </div>
       </div>
     </section>
