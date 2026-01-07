@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Cache directories
+.cache/
+*.cache
+node_modules/.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
