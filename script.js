@@ -1,50 +1,45 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Animation Observer ---
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
+  // --- Consolidated Observer ---
+  const sharedObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+      const target = entry.target;
+
+      // Handle fade-in sections
+      if (target.classList.contains('fade-in-section')) {
+        if (entry.isIntersecting) {
+          target.classList.add('is-visible');
+          sharedObserver.unobserve(target);
+        }
       }
-    });
-  }, observerOptions);
 
-  document.querySelectorAll('.fade-in-section').forEach(target => {
-    observer.observe(target);
-  });
+      // Handle mobile-only scroll interactions (hover effect)
+      if (target.classList.contains('scroll-trigger')) {
+        if (window.innerWidth < 768) {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+            target.classList.add('is-active');
+          } else {
+            target.classList.remove('is-active');
+          }
+        }
+      }
 
-  // --- Mobile Scroll Interaction Observer ---
-  // Triggers 'hover' styles when elements are centered in viewport on mobile
-  const interactionObserver = new IntersectionObserver((entries) => {
-    // Only apply scroll interaction classes on mobile devices
-    if (window.innerWidth >= 768) {
-      entries.forEach(entry => entry.target.classList.remove('is-active'));
-      return;
-    }
-
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-active');
-      } else {
-        entry.target.classList.remove('is-active');
+      // Handle sentiment trend bars
+      if (target.classList.contains('sentiment-trend-container')) {
+        if (entry.isIntersecting) {
+          target.classList.add('is-visible');
+        }
       }
     });
   }, {
     root: null,
-    rootMargin: '-20% 0px -20% 0px', // Trigger when element is in the middle 60% of screen
-    threshold: 0.4
+    rootMargin: '0px',
+    threshold: [0, 0.1, 0.4, 0.5] // Multiple thresholds for different behaviors
   });
 
-  // Observe elements that need scroll animation (Process & Platform cards)
-  document.querySelectorAll('.scroll-trigger').forEach(target => {
-    interactionObserver.observe(target);
+  // Start observing all relevant elements
+  document.querySelectorAll('.fade-in-section, .scroll-trigger, .sentiment-trend-container').forEach(el => {
+    sharedObserver.observe(el);
   });
 
   // --- Sentiment Feed ---
@@ -58,30 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const marqueeContent = document.getElementById('marquee-content');
-  if (marqueeContent) {
-    const createItem = (item) => {
-      const div = document.createElement('div');
-      div.className = 'flex items-center gap-4 bg-[#101628] border border-white/10 px-6 py-3 rounded-full hover:border-purple-500/50 transition-all cursor-default group';
+  // Use innerHTML for a single batch update to the DOM
+  marqueeContent.innerHTML = [...feedItems, ...feedItems].map(item => {
+    const sentimentClass = item.sentiment === 'POSITIVE'
+      ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/5'
+      : 'text-rose-400 border-rose-400/30 bg-rose-400/5';
 
-      const sentimentClass = item.sentiment === 'POSITIVE'
-        ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/5'
-        : 'text-rose-400 border-rose-400/30 bg-rose-400/5';
-
-      div.innerHTML = `
-        <span class="text-gray-500 text-xs font-medium font-mono">${item.location}</span>
-        <span class="text-gray-300 text-sm italic">"${item.text}"</span>
-        <span class="text-[10px] font-bold px-2.5 py-1 rounded border ${sentimentClass}">
-          ${item.sentiment}
-        </span>
+    return `
+        <div class="flex items-center gap-4 bg-[#101628] border border-white/10 px-6 py-3 rounded-full hover:border-purple-500/50 transition-all cursor-default group">
+          <span class="text-gray-500 text-xs font-medium font-mono">${item.location}</span>
+          <span class="text-gray-300 text-sm italic">"${item.text}"</span>
+          <span class="text-[10px] font-bold px-2.5 py-1 rounded border ${sentimentClass}">
+            ${item.sentiment}
+          </span>
+        </div>
       `;
-      return div;
-    };
-
-    // Duplicate logic for smooth infinite scroll
-    [...feedItems, ...feedItems, ...feedItems].forEach(item => {
-      marqueeContent.appendChild(createItem(item));
-    });
-  }
+  }).join('');
 
   // --- FAQ ---
   const categories = [
@@ -110,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       title: "Billing",
       items: [
-        { q: "How is pricing structured?", a: "Pricing is based on room count and call volume. This ensures predictable costs that scale with your property." },
-        { q: "Is there a setup fee?", a: "Yes. There is a one time setup fee of $1,000, which covers system configuration, integration setup, AI voice customization, and workflow tuning." },
+        { q: "How is pricing structured?", a: "Pricing is based on call volume. This ensures predictable costs that scale with your property." },
+        { q: "Is there a setup fee?", a: "Yes. There is a one time setup fee of that ranges from $1,500 to $3000 depending on the usecase, which covers system configuration, integration setup, AI voice customization, and workflow tuning." },
         { q: "Are there long term contracts?", a: "No long term contracts are required. Plans are billed monthly." },
         { q: "What happens if we exceed our call limit?", a: "You will never be charged unexpectedly. Overage handling is discussed and approved before activation." },
         { q: "Do you offer custom pricing?", a: "Yes. Multi property hotels and custom workflows are priced individually. Please contact sales for tailored pricing." }
@@ -132,43 +119,38 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeCategory = 0;
   const faqCategoriesEl = document.getElementById('faq-categories');
   const faqContentEl = document.getElementById('faq-content');
+  const faqMobileEl = document.getElementById('faq-mobile');
 
   function renderFAQ() {
-    const faqMobileEl = document.getElementById('faq-mobile');
+    const itemsHTML = categories[activeCategory].items.map((item) => `
+      <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <button onclick="toggleAccordion(this)" class="w-full p-6 text-left flex justify-between items-center group">
+          <span class="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors leading-tight">${item.q}</span>
+          <span class="text-2xl font-light ml-4 shrink-0 text-gray-300 accordion-icon transition-transform duration-300">+</span>
+        </button>
+        <div class="accordion-content h-0 overflow-hidden accordion-transition opacity-0">
+          <div class="px-6 pb-6 text-gray-500 leading-relaxed text-lg border-t border-gray-50 pt-4">
+            ${item.a}
+          </div>
+        </div>
+      </div>
+    `).join('');
 
     // Desktop Render (Tabs)
     if (faqCategoriesEl && faqContentEl) {
-      // Render Tabs
       faqCategoriesEl.innerHTML = categories.map((cat, i) => `
-          <button 
-            onclick="switchCategory(${i})"
-            class="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${activeCategory === i ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' : 'text-gray-500 hover:bg-white hover:text-gray-900'}"
-          >
-            ${cat.title}
-          </button>
-        `).join('');
+        <button 
+          onclick="switchCategory(${i})"
+          class="w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all ${activeCategory === i ? 'bg-purple-600 text-white shadow-lg shadow-purple-200' : 'text-gray-500 hover:bg-white hover:text-gray-900'}"
+        >
+          ${cat.title}
+        </button>
+      `).join('');
 
-      // Render Desktop Content
-      faqContentEl.innerHTML = `
-          <div class="space-y-4 animate-fade-slide">
-            ${categories[activeCategory].items.map((item) => `
-              <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <button onclick="toggleAccordion(this)" class="w-full p-6 text-left flex justify-between items-center group">
-                  <span class="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors leading-tight">${item.q}</span>
-                  <span class="text-2xl font-light ml-4 shrink-0 text-gray-300 accordion-icon transition-transform duration-300">+</span>
-                </button>
-                <div class="accordion-content h-0 overflow-hidden accordion-transition opacity-0">
-                  <div class="px-6 pb-6 text-gray-500 leading-relaxed text-lg border-t border-gray-50 pt-4">
-                    ${item.a}
-                  </div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        `;
+      faqContentEl.innerHTML = `<div class="space-y-4 animate-fade-slide">${itemsHTML}</div>`;
     }
 
-    // Mobile Render (Interleaved List with Tabs)
+    // Mobile Render
     if (faqMobileEl) {
       faqMobileEl.innerHTML = `
         <div class="flex gap-2 overflow-x-auto pb-4 -mx-6 px-6 no-scrollbar mb-4">
@@ -181,26 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>
           `).join('')}
         </div>
-        
-        <div class="animate-fade-slide">
-          <div class="space-y-4">
-            <div class="space-y-4">
-              ${categories[activeCategory].items.map((item) => `
-                <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                  <button onclick="toggleAccordion(this)" class="w-full p-6 text-left flex justify-between items-center group">
-                    <span class="font-bold text-gray-900 text-lg group-hover:text-purple-600 transition-colors leading-tight">${item.q}</span>
-                    <span class="text-2xl font-light ml-4 shrink-0 text-gray-300 accordion-icon transition-transform duration-300">+</span>
-                  </button>
-                  <div class="accordion-content h-0 overflow-hidden accordion-transition opacity-0">
-                    <div class="px-6 pb-6 text-gray-500 leading-relaxed text-lg border-t border-gray-50 pt-4">
-                      ${item.a}
-                    </div>
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        </div>
+        <div class="animate-fade-slide"><div class="space-y-4">${itemsHTML}</div></div>
       `;
     }
   }
