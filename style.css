@@ -1788,13 +1788,15 @@ body {
 }
 
 .blur-3xl {
-  --tw-blur: blur(64px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+  --tw-blur: blur(40px); /* Reduced from 64px */
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+  will-change: filter;
 }
 
 .blur-\[120px\] {
-  --tw-blur: blur(120px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+  --tw-blur: blur(60px); /* Reduced from 120px */
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+  will-change: filter;
 }
 
 .blur-md {
@@ -1900,6 +1902,11 @@ body {
 
 .hover\:border-purple-500\/50:hover {
   border-color: #a855f780
+}
+
+.hover\:border-purple-600:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(147 51 234 / var(--tw-border-opacity, 1))
 }
 
 .hover\:bg-gray-50:hover {
@@ -2178,16 +2185,17 @@ body {
 /* Marquee Animation */
 @keyframes marquee {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 
 /* Fade In Animation */
@@ -2321,4 +2329,14 @@ html {
 
 .pulse-emerald {
   animation: pulse-emerald 2s infinite;
+}
+/* Sentiment Bar Animation */
+.sentiment-bar {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sentiment-trend-container.is-visible .sentiment-bar {
+  transform: scaleY(1);
 }
