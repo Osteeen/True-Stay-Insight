@@ -46,8 +46,10 @@ window.updateLanguage = (lang) => {
   }
 
   // Update language selector UI
-  document.querySelectorAll('.current-lang-flag').forEach(el => el.innerText = flags[lang]);
-  document.querySelectorAll('.current-lang-name').forEach(el => el.innerText = langNames[lang]);
+  const flagEl = document.getElementById('current-lang-flag');
+  const nameEl = document.getElementById('current-lang-name');
+  if (flagEl) flagEl.innerText = flags[lang];
+  if (nameEl) nameEl.innerText = langNames[lang];
 
   // Update HTML lang attribute
   document.documentElement.lang = lang;
@@ -59,10 +61,11 @@ window.updateLanguage = (lang) => {
 window.changeLanguage = (lang) => {
   window.updateLanguage(lang);
 
-  // Close all open dropdowns instantly
-  document.querySelectorAll('.lang-dropdown').forEach(dropdown => {
+  // Close dropdown instantly
+  const dropdown = document.getElementById('lang-dropdown');
+  if (dropdown) {
     dropdown.classList.add('invisible', 'opacity-0');
-  });
+  }
 };
 
 const detectLanguage = () => {
@@ -259,50 +262,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Language selector toggle logic for all instances
-  document.querySelectorAll('.lang-selector-container').forEach(container => {
-    const btn = container.querySelector('.lang-selector-btn');
-    const dropdown = container.querySelector('.lang-dropdown');
+  // Language selector toggle logic
+  const langSelector = document.getElementById('lang-selector');
+  const langDropdown = document.getElementById('lang-dropdown');
 
-    if (btn && dropdown) {
-      // Toggle logic for mobile/click
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isHidden = dropdown.classList.contains('invisible');
+  if (langSelector && langDropdown) {
+    const btn = langSelector.querySelector('button');
 
-        // Close other dropdowns first
-        document.querySelectorAll('.lang-dropdown').forEach(d => {
-          if (d !== dropdown) d.classList.add('invisible', 'opacity-0');
-        });
-
-        if (isHidden) {
-          dropdown.classList.remove('invisible', 'opacity-0');
-        } else {
-          dropdown.classList.add('invisible', 'opacity-0');
-        }
-      });
-
-      // Hover logic for larger screens
-      container.addEventListener('mouseenter', () => {
-        if (window.innerWidth >= 768) {
-          dropdown.classList.remove('invisible', 'opacity-0');
-        }
-      });
-
-      container.addEventListener('mouseleave', () => {
-        if (window.innerWidth >= 768) {
-          dropdown.classList.add('invisible', 'opacity-0');
-        }
-      });
-    }
-  });
-
-  // Close all dropdowns when clicking outside
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.lang-dropdown').forEach(dropdown => {
-      dropdown.classList.add('invisible', 'opacity-0');
+    // Toggle logic for mobile/click
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = langDropdown.classList.contains('invisible');
+      if (isHidden) {
+        langDropdown.classList.remove('invisible', 'opacity-0');
+      } else {
+        langDropdown.classList.add('invisible', 'opacity-0');
+      }
     });
-  });
+
+    // Hover logic for desktop
+    langSelector.addEventListener('mouseenter', () => {
+      if (window.innerWidth >= 768) {
+        langDropdown.classList.remove('invisible', 'opacity-0');
+      }
+    });
+
+    langSelector.addEventListener('mouseleave', () => {
+      if (window.innerWidth >= 768) {
+        langDropdown.classList.add('invisible', 'opacity-0');
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+      langDropdown.classList.add('invisible', 'opacity-0');
+    });
+  }
 
   // Initial render is handled by detectLanguage() -> updateLanguage()
   detectLanguage();
