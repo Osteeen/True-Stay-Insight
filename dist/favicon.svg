@@ -5,6 +5,6 @@
       <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <rect x="0" y="0" width="512" height="512" rx="120" ry="120" fill="url(#grad1)" />
+  <rect x="0" y="0" width="512" height="512" fill="url(#grad1)" />
   <text x="50%" y="50%" font-family="Arial, sans-serif" font-weight="bold" font-style="italic" font-size="340" fill="white" text-anchor="middle" dy=".35em">T</text>
 </svg>
