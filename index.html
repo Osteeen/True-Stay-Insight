@@ -54,7 +54,8 @@
       <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <div class="w-8 h-8 purple-gradient rounded-lg flex items-center justify-center text-white font-bold italic">T
         </div>
-        <span class="text-xl font-bold tracking-tight text-gray-900">Truestayinsight</span>
+        <span class="text-xl font-bold tracking-tight text-gray-900 md:hidden">TSI</span>
+        <span class="text-xl font-bold tracking-tight text-gray-900 hidden md:block">Truestayinsight</span>
       </div>
 
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
@@ -67,8 +68,16 @@
       </div>
 
       <div class="flex items-center gap-container">
+        <!-- Desktop Book a call -->
         <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
           class="hidden md:block px-6 py-2.5 bg-purple-600 text-white rounded-full text-sm font-semibold hover:bg-purple-700 transition-all shadow-lg shadow-purple-200"
+          data-i18n="nav_book_call">
+          Book a call
+        </button>
+
+        <!-- Mobile Book a call (smaller) -->
+        <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
+          class="md:hidden px-3 py-1.5 bg-purple-600 text-white rounded-full text-[10px] font-bold hover:bg-purple-700 transition-all shadow-md shadow-purple-100 whitespace-nowrap"
           data-i18n="nav_book_call">
           Book a call
         </button>
@@ -136,7 +145,7 @@
 
         <div class="flex flex-col md:flex-row items-center justify-center gap-8">
           <div onclick="showSampleMessage()"
-            class="flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-purple-400 hover:scale-105 p-3 pr-8 rounded-2xl shadow-xl shadow-gray-200/40 cursor-pointer transition-all active:scale-95 group order-2 md:order-1">
+            class="flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-purple-400 hover:scale-105 p-3 pr-8 rounded-2xl shadow-xl shadow-gray-200/40 cursor-pointer transition-all active:scale-95 group order-1 md:order-1">
             <div
               class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center relative transition-colors pulse-emerald">
               <div
@@ -157,7 +166,7 @@
           </div>
 
           <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
-            class="px-12 py-5 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-2xl shadow-purple-300/50 w-full md:w-auto hover:scale-105 active:scale-95 text-lg order-1 md:order-2"
+            class="px-12 py-5 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-2xl shadow-purple-300/50 w-full md:w-auto hover:scale-105 active:scale-95 text-lg order-2 md:order-2"
             data-i18n="hero_book_call">
             Book a call
           </button>
