@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" translate="no">
 
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <script src="translations.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Truestayinsight | Premium Guest Feedback Automation</title>
   <meta name="description"
@@ -56,17 +58,52 @@
       </div>
 
       <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-        <a href="#about" class="hover:text-purple-600 transition-colors">About</a>
-        <a href="#benefits" class="hover:text-purple-600 transition-colors">Benefits</a>
-        <a href="#how-it-works" class="hover:text-purple-600 transition-colors">How it works</a>
-        <a href="#platform" class="hover:text-purple-600 transition-colors">Platform</a>
-        <a href="#faq" class="hover:text-purple-600 transition-colors">FAQ</a>
+        <a href="#about" class="hover:text-purple-600 transition-colors" data-i18n="nav_about">About</a>
+        <a href="#benefits" class="hover:text-purple-600 transition-colors" data-i18n="nav_benefits">Benefits</a>
+        <a href="#how-it-works" class="hover:text-purple-600 transition-colors" data-i18n="nav_how_it_works">How it
+          works</a>
+        <a href="#platform" class="hover:text-purple-600 transition-colors" data-i18n="nav_platform">Platform</a>
+        <a href="#faq" class="hover:text-purple-600 transition-colors" data-i18n="nav_faq">FAQ</a>
       </div>
 
-      <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
-        class="px-6 py-2.5 bg-purple-600 text-white rounded-full text-sm font-semibold hover:bg-purple-700 transition-all shadow-lg shadow-purple-200">
-        Book a call
-      </button>
+      <div class="flex items-center gap-4">
+        <!-- Language Selector -->
+        <div class="relative group" id="lang-selector">
+          <button
+            class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 hover:border-purple-200 transition-all text-sm font-medium text-gray-600 bg-white/50">
+            <span id="current-lang-flag">🇺🇸</span>
+            <span id="current-lang-name" class="hidden sm:inline">EN</span>
+            <svg class="w-4 h-4 text-gray-400 group-hover:rotate-180 transition-transform" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div
+            class="absolute right-0 mt-2 w-32 bg-white rounded-2xl shadow-xl border border-gray-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[60] py-2">
+            <button onclick="changeLanguage('en')"
+              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇺🇸</span>
+              English</button>
+            <button onclick="changeLanguage('de')"
+              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇩🇪</span>
+              Deutsch</button>
+            <button onclick="changeLanguage('fr')"
+              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇫🇷</span>
+              Français</button>
+            <button onclick="changeLanguage('es')"
+              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇪🇸</span>
+              Español</button>
+            <button onclick="changeLanguage('it')"
+              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇮🇹</span>
+              Italiano</button>
+          </div>
+        </div>
+
+        <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
+          class="px-6 py-2.5 bg-purple-600 text-white rounded-full text-sm font-semibold hover:bg-purple-700 transition-all shadow-lg shadow-purple-200"
+          data-i18n="nav_book_call">
+          Book a call
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -80,16 +117,18 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-600"></span>
           </span>
-          NEXT-GEN HOSPITALITY FEEDBACK
+          <span data-i18n="hero_badge">NEXT-GEN HOSPITALITY FEEDBACK</span>
         </div>
 
-        <h1 class="text-6xl md:text-8xl font-bold tracking-tight text-gray-900 mb-8 leading-[1.1]">
+        <h1 class="text-6xl md:text-8xl font-bold tracking-tight text-gray-900 mb-8 leading-[1.1]"
+          data-i18n="hero_title">
           Capture the feedback <br />
           <span class="text-transparent bg-clip-text purple-gradient"
             style="-webkit-background-clip: text; background-clip: text;">guests won't write.</span>
         </h1>
 
-        <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
+        <p class="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed font-light"
+          data-i18n="hero_subtitle">
           Truestayinsight automatically calls your guests after checkout to capture natural feedback, detect issues
           early, and prevent negative public reviews.
         </p>
@@ -104,8 +143,10 @@
               </div>
             </div>
             <div class="text-left">
-              <div class="text-xs font-bold text-gray-400 uppercase tracking-tight">Sample Call</div>
-              <div class="text-sm font-semibold text-gray-900 leading-tight">Guest: "Room service was..."</div>
+              <div class="text-xs font-bold text-gray-400 uppercase tracking-tight" data-i18n="hero_sample_call">Sample
+                Call</div>
+              <div class="text-sm font-semibold text-gray-900 leading-tight" data-i18n="hero_guest_msg">Guest: "Room
+                service was..."</div>
             </div>
             <div class="flex gap-0.5 items-end h-4 ml-2">
               <div class="w-1 bg-emerald-300 rounded-full h-2 animate-bounce"></div>
@@ -115,7 +156,8 @@
           </div>
 
           <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
-            class="px-12 py-5 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-2xl shadow-purple-300/50 w-full md:w-auto hover:scale-105 active:scale-95 text-lg order-1 md:order-2">
+            class="px-12 py-5 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-2xl shadow-purple-300/50 w-full md:w-auto hover:scale-105 active:scale-95 text-lg order-1 md:order-2"
+            data-i18n="hero_book_call">
             Book a call
           </button>
         </div>
@@ -129,7 +171,8 @@
     <!-- SentimentFeed -->
     <section class="bg-[#050914] py-6 border-y border-white/5 overflow-hidden">
       <div class="max-w-7xl mx-auto px-6 mb-4 flex items-center gap-4">
-        <div class="text-[10px] font-black text-emerald-400 tracking-[0.2em] uppercase whitespace-nowrap">Live Feed
+        <div class="text-[10px] font-black text-emerald-400 tracking-[0.2em] uppercase whitespace-nowrap"
+          data-i18n="live_feed">Live Feed
         </div>
         <div class="h-[1px] flex-grow bg-white/10"></div>
       </div>
@@ -162,8 +205,9 @@
               </svg>
             </div>
             <div>
-              <div class="text-xs font-bold text-purple-600 uppercase tracking-wider">Live Call</div>
-              <div class="text-sm font-bold text-gray-900">Guest is responding...</div>
+              <div class="text-xs font-bold text-purple-600 uppercase tracking-wider" data-i18n="live_call_label">Live
+                Call</div>
+              <div class="text-sm font-bold text-gray-900" data-i18n="guest_responding">Guest is responding...</div>
             </div>
           </div>
 
@@ -172,17 +216,22 @@
         </div>
 
         <div class="w-full lg:w-1/2 space-y-8">
-          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest">Our Mission</div>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Guest feedback is <br /> fundamentally
+          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest" data-i18n="about_mission">Our Mission
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight" data-i18n="about_title">Guest feedback
+            is <br /> fundamentally
             broken.</h2>
           <div class="space-y-6 text-gray-500 leading-relaxed text-lg font-light">
-            <p>Traditional surveys fail because they arrive too late and feel like homework. Most guests simply don't
+            <p data-i18n="about_p1">Traditional surveys fail because they arrive too late and feel like homework. Most
+              guests simply don't
               bother, while those with minor frustrations stay silent until they reach a public review platform.</p>
-            <p>We built Truestayinsight (TSI) to restore the human connection in hospitality. By using natural voice
+            <p data-i18n="about_p2">We built Truestayinsight (TSI) to restore the human connection in hospitality. By
+              using natural voice
               conversations, we make it easy for guests to share their genuine experience without the friction of
               digital forms.</p>
             <div class="pt-4 border-l-4 border-purple-100 pl-6">
-              <p class="font-semibold text-gray-900 italic">"Because a 2-minute conversation with TSI is worth more than
+              <p class="font-semibold text-gray-900 italic" data-i18n="about_quote">"Because a 2-minute conversation
+                with TSI is worth more than
                 a 20-question survey."</p>
             </div>
           </div>
@@ -194,8 +243,10 @@
     <section id="benefits" class="py-32 px-6 bg-gray-50/50 fade-in-section">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-20">
-          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4">Efficiency Redefined</div>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Voice-First Hospitality Intelligence</h2>
+          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4" data-i18n="benefits_badge">
+            Efficiency Redefined</div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900" data-i18n="benefits_title">Voice-First Hospitality
+            Intelligence</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -208,8 +259,9 @@
             <div
               class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
               📈</div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Higher Response Rates</h3>
-            <p class="text-gray-500 leading-relaxed text-lg">Reach up to 80% of guests after checkout. Voice feels
+            <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="benefit1_title">Higher Response Rates</h3>
+            <p class="text-gray-500 leading-relaxed text-lg" data-i18n="benefit1_desc">Reach up to 80% of guests after
+              checkout. Voice feels
               personal, making guests more likely to share their thoughts than through email links.</p>
           </div>
           <div
@@ -220,8 +272,9 @@
             <div
               class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
               💬</div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Real Conversations</h3>
-            <p class="text-gray-500 leading-relaxed text-lg">Go beyond '1-5 stars'. Capture nuance, emotion, and context
+            <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="benefit2_title">Real Conversations</h3>
+            <p class="text-gray-500 leading-relaxed text-lg" data-i18n="benefit2_desc">Go beyond '1-5 stars'. Capture
+              nuance, emotion, and context
               that surveys miss through natural, open-ended voice dialogue.</p>
           </div>
           <div
@@ -232,8 +285,9 @@
             <div
               class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500">
               🛡️</div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Private Issue Resolution</h3>
-            <p class="text-gray-500 leading-relaxed text-lg">Identify service gaps immediately. Escalations are sent to
+            <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="benefit3_title">Private Issue Resolution</h3>
+            <p class="text-gray-500 leading-relaxed text-lg" data-i18n="benefit3_desc">Identify service gaps
+              immediately. Escalations are sent to
               your team in real-time, allowing you to resolve issues before they become public.</p>
           </div>
         </div>
@@ -244,8 +298,9 @@
     <section id="how-it-works" class="py-32 px-6 bg-white overflow-hidden fade-in-section">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-24">
-          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4">Our Process</div>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Insights in Motion</h2>
+          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4" data-i18n="process_badge">Our
+            Process</div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900" data-i18n="process_title">Insights in Motion</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
@@ -265,8 +320,9 @@
               </div>
               <span class="text-2xl font-black text-purple-600">01</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Guest Checks Out</h3>
-            <p class="text-gray-500 leading-relaxed text-lg px-4">A seamless integration with your PMS triggers the
+            <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="process1_title">Guest Checks Out</h3>
+            <p class="text-gray-500 leading-relaxed text-lg px-4" data-i18n="process1_desc">A seamless integration with
+              your PMS triggers the
               feedback process the moment a guest departs.</p>
           </div>
           <div class="text-center group scroll-trigger">
@@ -277,8 +333,9 @@
               </div>
               <span class="text-2xl font-black text-purple-600">02</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">AI Calls Automatically</h3>
-            <p class="text-gray-500 leading-relaxed text-lg px-4">Our AI reaches out at the optimal time with a warm,
+            <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="process2_title">AI Calls Automatically</h3>
+            <p class="text-gray-500 leading-relaxed text-lg px-4" data-i18n="process2_desc">Our AI reaches out at the
+              optimal time with a warm,
               conversational tone to ask about their stay.</p>
           </div>
           <div class="text-center group scroll-trigger">
@@ -289,8 +346,9 @@
               </div>
               <span class="text-2xl font-black text-purple-600">03</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Insights Appear</h3>
-            <p class="text-gray-500 leading-relaxed text-lg px-4">Feedback is analyzed and categorized. Serious issues
+            <h3 class="text-2xl font-bold text-gray-900 mb-4" data-i18n="process3_title">Insights Appear</h3>
+            <p class="text-gray-500 leading-relaxed text-lg px-4" data-i18n="process3_desc">Feedback is analyzed and
+              categorized. Serious issues
               are escalated immediately to your dashboard.</p>
           </div>
         </div>
@@ -302,9 +360,10 @@
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div class="max-w-2xl">
-            <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4">The Platform</div>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Listening at Scale <br /> <span
-                class="text-gray-400">Without Compromise.</span></h2>
+            <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4" data-i18n="platform_badge">The
+              Platform</div>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight" data-i18n="platform_title">Listening
+              at Scale <br /> <span class="text-gray-400">Without Compromise.</span></h2>
           </div>
 
         </div>
@@ -315,11 +374,14 @@
             class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card scroll-trigger">
             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 text-gray-400 text-[10px] font-bold uppercase mb-8 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
-              <span class="w-1 h-1 rounded-full bg-current"></span>Intelligence
+              <span class="w-1 h-1 rounded-full bg-current"></span><span
+                data-i18n="label_intelligence">Intelligence</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors"
+              data-i18n="feature1_title">
               Conversational AI</h3>
-            <p class="text-gray-500 leading-relaxed text-lg mb-8">Natural, non-linear dialogues that adapt to guest
+            <p class="text-gray-500 leading-relaxed text-lg mb-8" data-i18n="feature1_desc">Natural, non-linear
+              dialogues that adapt to guest
               responses like a human agent would.</p>
             <div class="h-1 w-12 bg-gray-100 group-hover:w-full group-hover:bg-purple-600 transition-all duration-500">
             </div>
@@ -328,11 +390,13 @@
             class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card scroll-trigger">
             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 text-gray-400 text-[10px] font-bold uppercase mb-8 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
-              <span class="w-1 h-1 rounded-full bg-current"></span>Monitoring
+              <span class="w-1 h-1 rounded-full bg-current"></span><span data-i18n="label_monitoring">Monitoring</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">Issue
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors"
+              data-i18n="feature2_title">Issue
               Detection</h3>
-            <p class="text-gray-500 leading-relaxed text-lg mb-8">Automatically identifies mentions of maintenance,
+            <p class="text-gray-500 leading-relaxed text-lg mb-8" data-i18n="feature2_desc">Automatically identifies
+              mentions of maintenance,
               cleanliness, or service failures.</p>
             <div class="h-1 w-12 bg-gray-100 group-hover:w-full group-hover:bg-purple-600 transition-all duration-500">
             </div>
@@ -341,7 +405,7 @@
             class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card scroll-trigger">
             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 text-gray-400 text-[10px] font-bold uppercase mb-8 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
-              <span class="w-1 h-1 rounded-full bg-current"></span>Analysis
+              <span class="w-1 h-1 rounded-full bg-current"></span><span data-i18n="label_analysis">Analysis</span>
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">Sentiment
               Analysis</h3>
@@ -354,11 +418,13 @@
             class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card scroll-trigger">
             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 text-gray-400 text-[10px] font-bold uppercase mb-8 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
-              <span class="w-1 h-1 rounded-full bg-current"></span>Logistics
+              <span class="w-1 h-1 rounded-full bg-current"></span><span data-i18n="label_logistics">Logistics</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">Smart Timing
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors"
+              data-i18n="feature4_title">Smart Timing
             </h3>
-            <p class="text-gray-500 leading-relaxed text-lg mb-8">Calls are placed when guests are most likely to be
+            <p class="text-gray-500 leading-relaxed text-lg mb-8" data-i18n="feature4_desc">Calls are placed when guests
+              are most likely to be
               available based on check-out data.</p>
             <div class="h-1 w-12 bg-gray-100 group-hover:w-full group-hover:bg-purple-600 transition-all duration-500">
             </div>
@@ -367,11 +433,13 @@
             class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card scroll-trigger">
             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 text-gray-400 text-[10px] font-bold uppercase mb-8 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
-              <span class="w-1 h-1 rounded-full bg-current"></span>Urgency
+              <span class="w-1 h-1 rounded-full bg-current"></span><span data-i18n="label_urgency">Urgency</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">Escalation
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors"
+              data-i18n="feature5_title">Escalation
               Alerts</h3>
-            <p class="text-gray-500 leading-relaxed text-lg mb-8">SMS or email notifications sent to managers the second
+            <p class="text-gray-500 leading-relaxed text-lg mb-8" data-i18n="feature5_desc">SMS or email notifications
+              sent to managers the second
               a serious issue is detected.</p>
             <div class="h-1 w-12 bg-gray-100 group-hover:w-full group-hover:bg-purple-600 transition-all duration-500">
             </div>
@@ -380,11 +448,13 @@
             class="p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-soft hover:shadow-2xl transition-all group cursor-default feature-card scroll-trigger">
             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-50 text-gray-400 text-[10px] font-bold uppercase mb-8 group-hover:bg-purple-50 group-hover:text-purple-600 transition-colors">
-              <span class="w-1 h-1 rounded-full bg-current"></span>Reporting
+              <span class="w-1 h-1 rounded-full bg-current"></span><span data-i18n="label_reporting">Reporting</span>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">Dashboard
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors"
+              data-i18n="feature6_title">Dashboard
               Reporting</h3>
-            <p class="text-gray-500 leading-relaxed text-lg mb-8">View feedback by guest type, room category, or
+            <p class="text-gray-500 leading-relaxed text-lg mb-8" data-i18n="feature6_desc">View feedback by guest type,
+              room category, or
               specific property areas.</p>
             <div class="h-1 w-12 bg-gray-100 group-hover:w-full group-hover:bg-purple-600 transition-all duration-500">
             </div>
@@ -398,9 +468,10 @@
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div class="max-w-xl">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">Command Center for <br
-                class="hidden md:block" /> Guest Experience</h2>
-            <p class="text-gray-500 text-lg font-light leading-relaxed">Real-time visibility into every post-stay
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6" data-i18n="dashboard_title">
+              Command Center for <br class="hidden md:block" /> Guest Experience</h2>
+            <p class="text-gray-500 text-lg font-light leading-relaxed" data-i18n="dashboard_desc">Real-time visibility
+              into every post-stay
               interaction. Track trends, manage escalations, and recover guests before they leave a review.</p>
           </div>
 
@@ -421,23 +492,25 @@
             <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group">
               <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-purple-500 transition-colors">
               </div>
-              <div class="text-xs font-bold text-gray-400 uppercase mb-2">Response Rate</div>
+              <div class="text-xs font-bold text-gray-400 uppercase mb-2" data-i18n="stat_response_rate">Response Rate
+              </div>
               <div class="text-3xl font-bold text-gray-900 mb-1">42.8%</div>
               <div class="text-xs font-bold text-emerald-500">+12% vs email</div>
             </div>
             <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group">
               <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-purple-500 transition-colors">
               </div>
-              <div class="text-xs font-bold text-gray-400 uppercase mb-2">Avg Sentiment</div>
+              <div class="text-xs font-bold text-gray-400 uppercase mb-2" data-i18n="stat_avg_sentiment">Avg Sentiment
+              </div>
               <div class="text-3xl font-bold text-gray-900 mb-1">8.9</div>
-              <div class="text-xs font-bold text-purple-500">out of 10.0</div>
+              <div class="text-xs font-bold text-purple-500" data-i18n="stat_out_of">out of 10.0</div>
             </div>
             <div
               class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden group sm:col-span-2 lg:col-span-1">
               <div class="absolute left-0 top-0 bottom-0 w-1 bg-rose-500"></div>
-              <div class="text-xs font-bold text-gray-400 uppercase mb-2">Escalations</div>
+              <div class="text-xs font-bold text-gray-400 uppercase mb-2" data-i18n="stat_escalations">Escalations</div>
               <div class="text-3xl font-bold text-gray-900 mb-1">3</div>
-              <div class="text-xs font-bold text-rose-500">Needs Attention</div>
+              <div class="text-xs font-bold text-rose-500" data-i18n="stat_needs_attention">Needs Attention</div>
             </div>
           </div>
 
@@ -445,16 +518,16 @@
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-2 bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100">
               <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-bold text-gray-900">Recent Interactions</h3>
+                <h3 class="text-lg font-bold text-gray-900" data-i18n="dashboard_recent_title">Recent Interactions</h3>
               </div>
               <div class="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
                 <table class="w-full text-left min-w-[500px]">
                   <thead>
                     <tr class="text-xs font-bold text-gray-400 uppercase tracking-widest border-b border-gray-50">
-                      <th class="pb-4">Guest</th>
-                      <th class="pb-4">Status</th>
-                      <th class="pb-4">Sentiment</th>
-                      <th class="pb-4">Issues</th>
+                      <th class="pb-4" data-i18n="table_guest">Guest</th>
+                      <th class="pb-4" data-i18n="table_status">Status</th>
+                      <th class="pb-4" data-i18n="table_sentiment">Sentiment</th>
+                      <th class="pb-4" data-i18n="table_issues">Issues</th>
                     </tr>
                   </thead>
                   <tbody class="text-sm">
@@ -464,7 +537,8 @@
                         <div class="text-xs text-gray-400">Ste 404</div>
                       </td>
                       <td class="py-5"><span
-                          class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 text-emerald-600">Completed</span>
+                          class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 text-emerald-600"
+                          data-i18n="table_status_completed">Completed</span>
                       </td>
                       <td class="py-5">
                         <div class="flex items-center gap-2">
@@ -498,7 +572,8 @@
                         <div class="text-xs text-gray-400">Rm 105</div>
                       </td>
                       <td class="py-5"><span
-                          class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 text-emerald-600">Completed</span>
+                          class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-50 text-emerald-600"
+                          data-i18n="table_status_completed">Completed</span>
                       </td>
                       <td class="py-5">
                         <div class="flex items-center gap-2">
@@ -515,7 +590,8 @@
                         <div class="text-xs text-gray-400">Ste 301</div>
                       </td>
                       <td class="py-5"><span
-                          class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-gray-100 text-gray-400">Scheduled</span>
+                          class="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-gray-100 text-gray-400"
+                          data-i18n="table_status_scheduled">Scheduled</span>
                       </td>
                       <td class="py-5">
                         <div class="flex items-center gap-2">
@@ -576,9 +652,11 @@
               <div class="bg-purple-600 rounded-3xl p-6 text-white shadow-xl shadow-purple-200">
                 <div class="flex items-center gap-2 mb-3">
                   <span class="text-lg">✨</span>
-                  <span class="text-xs font-bold uppercase tracking-wider">AI Recommendation</span>
+                  <span class="text-xs font-bold uppercase tracking-wider" data-i18n="ai_rec_title">AI
+                    Recommendation</span>
                 </div>
-                <p class="text-sm font-medium leading-relaxed opacity-90">"Housekeeping complaints peak on Sundays.
+                <p class="text-sm font-medium leading-relaxed opacity-90" data-i18n="ai_rec_msg">"Housekeeping
+                  complaints peak on Sundays.
                   Consider overlapping shift schedules during checkout hours."</p>
               </div>
             </div>
@@ -591,7 +669,8 @@
     <section class="py-32 px-6 bg-gray-50/30 fade-in-section">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-16 px-4">
-          <h2 class="text-3xl md:text-5xl font-bold text-gray-900">Manual Surveys vs Truestayinsight</h2>
+          <h2 class="text-3xl md:text-5xl font-bold text-gray-900" data-i18n="comparison_title">Manual Surveys vs
+            Truestayinsight</h2>
         </div>
 
         <div class="hidden md:block relative">
@@ -599,46 +678,54 @@
             <table class="w-full text-left border-collapse">
               <thead>
                 <tr class="bg-gray-50/50">
-                  <th class="p-8 text-xs font-bold text-gray-400 uppercase tracking-widest">Metric</th>
-                  <th class="p-8 text-xs font-bold text-gray-900 uppercase tracking-widest">Legacy Manual & Email</th>
-                  <th class="p-8 text-xs font-bold text-purple-600 uppercase tracking-widest bg-purple-50/30">
+                  <th class="p-8 text-xs font-bold text-gray-400 uppercase tracking-widest"
+                    data-i18n="comparison_metric">Metric</th>
+                  <th class="p-8 text-xs font-bold text-gray-900 uppercase tracking-widest"
+                    data-i18n="comparison_legacy">Legacy Manual & Email</th>
+                  <th class="p-8 text-xs font-bold text-purple-600 uppercase tracking-widest bg-purple-50/30"
+                    data-i18n="comparison_advantage">
                     Truestayinsight Advantage</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-50">
                 <tr class="hover:bg-gray-50/30 transition-colors group">
-                  <td class="p-8 font-bold text-gray-700 text-lg">Feedback Response Rate</td>
+                  <td class="p-8 font-bold text-gray-700 text-lg" data-i18n="metric_response">Feedback Response Rate
+                  </td>
                   <td class="p-8 text-gray-500 text-lg">3 - 8%</td>
                   <td
                     class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors">
                     60 - 80%</td>
                 </tr>
                 <tr class="hover:bg-gray-50/30 transition-colors group">
-                  <td class="p-8 font-bold text-gray-700 text-lg">Staff Time Required</td>
-                  <td class="p-8 text-gray-500 text-lg">40+ hours / mo</td>
+                  <td class="p-8 font-bold text-gray-700 text-lg" data-i18n="metric_time">Staff Time Required</td>
+                  <td class="p-8 text-gray-500 text-lg" data-i18n="metric_time_val">40+ hours / mo</td>
                   <td
-                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors">
+                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors"
+                    data-i18n="metric_time_tsi">
                     Zero</td>
                 </tr>
                 <tr class="hover:bg-gray-50/30 transition-colors group">
-                  <td class="p-8 font-bold text-gray-700 text-lg">Data Depth</td>
-                  <td class="p-8 text-gray-500 text-lg">Fixed Star Ratings</td>
+                  <td class="p-8 font-bold text-gray-700 text-lg" data-i18n="metric_depth">Data Depth</td>
+                  <td class="p-8 text-gray-500 text-lg" data-i18n="metric_depth_val">Fixed Star Ratings</td>
                   <td
-                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors">
+                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors"
+                    data-i18n="metric_depth_tsi">
                     Natural Conversation</td>
                 </tr>
                 <tr class="hover:bg-gray-50/30 transition-colors group">
-                  <td class="p-8 font-bold text-gray-700 text-lg">Consistency</td>
-                  <td class="p-8 text-gray-500 text-lg">Erratic / Subjective</td>
+                  <td class="p-8 font-bold text-gray-700 text-lg" data-i18n="metric_consistency">Consistency</td>
+                  <td class="p-8 text-gray-500 text-lg" data-i18n="metric_consistency_val">Erratic / Subjective</td>
                   <td
-                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors">
+                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors"
+                    data-i18n="metric_consistency_tsi">
                     100% Reliable</td>
                 </tr>
                 <tr class="hover:bg-gray-50/30 transition-colors group">
-                  <td class="p-8 font-bold text-gray-700 text-lg">Resolution Speed</td>
-                  <td class="p-8 text-gray-500 text-lg">2 - 5 Days</td>
+                  <td class="p-8 font-bold text-gray-700 text-lg" data-i18n="metric_speed">Resolution Speed</td>
+                  <td class="p-8 text-gray-500 text-lg" data-i18n="metric_speed_val">2 - 5 Days</td>
                   <td
-                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors">
+                    class="p-8 font-black text-purple-600 text-xl bg-purple-50/10 group-hover:bg-purple-50/40 transition-colors"
+                    data-i18n="metric_speed_tsi">
                     Real-time Alerts</td>
                 </tr>
               </tbody>
@@ -725,8 +812,9 @@
     <section id="faq" class="py-32 px-6 bg-gray-50/50 fade-in-section">
       <div class="max-w-5xl mx-auto">
         <div class="text-center mb-20">
-          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4">Support</div>
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900">Frequently Asked Questions</h2>
+          <div class="text-sm font-bold text-purple-600 uppercase tracking-widest mb-4" data-i18n="faq_badge">Support
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900" data-i18n="faq_title">Frequently Asked Questions</h2>
         </div>
 
         <div class="flex flex-col md:flex-row gap-12">
@@ -761,14 +849,16 @@
         </div>
 
         <div class="relative z-10">
-          <h2 class="text-4xl md:text-7xl font-bold text-white mb-10 leading-[1.1]">Ready to hear what your <br
-              class="hidden md:block" /> guests won't write?</h2>
-          <p class="text-gray-400 text-lg md:text-xl mb-16 max-w-2xl mx-auto font-light leading-relaxed">Join modern
+          <h2 class="text-4xl md:text-7xl font-bold text-white mb-10 leading-[1.1]" data-i18n="cta_title">Ready to hear
+            what your <br class="hidden md:block" /> guests won't write?</h2>
+          <p class="text-gray-400 text-lg md:text-xl mb-16 max-w-2xl mx-auto font-light leading-relaxed"
+            data-i18n="cta_desc">Join modern
             hospitality teams using TSI to protect their reputation and delight guests before they ever hit the review
             boards.</p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
             <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
-              class="px-12 py-6 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-xl shadow-purple-500/40 w-full sm:w-auto hover:scale-105 active:scale-95 text-xl">
+              class="px-12 py-6 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-all shadow-xl shadow-purple-500/40 w-full sm:w-auto hover:scale-105 active:scale-95 text-xl"
+              data-i18n="cta_btn">
               Book a call
             </button>
           </div>
@@ -784,15 +874,17 @@
             <div
               class="w-6 h-6 purple-gradient rounded flex items-center justify-center text-white text-[10px] font-bold">
               T</div>
-            <span class="text-lg font-bold tracking-tight text-gray-900">Truestayinsight</span>
+            <span class="text-lg font-bold tracking-tight text-gray-900"
+              data-i18n="footer_tagline">Truestayinsight</span>
           </div>
 
           <div class="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-400">
-            <a href="#about" class="hover:text-purple-600 transition-colors">About</a>
-            <a href="#benefits" class="hover:text-purple-600 transition-colors">Benefits</a>
-            <a href="#how-it-works" class="hover:text-purple-600 transition-colors">How it works</a>
-            <a href="#platform" class="hover:text-purple-600 transition-colors">Platform</a>
-            <a href="#faq" class="hover:text-purple-600 transition-colors">FAQ</a>
+            <a href="#about" class="hover:text-purple-600 transition-colors" data-i18n="nav_about">About</a>
+            <a href="#benefits" class="hover:text-purple-600 transition-colors" data-i18n="nav_benefits">Benefits</a>
+            <a href="#how-it-works" class="hover:text-purple-600 transition-colors" data-i18n="nav_how_it_works">How it
+              works</a>
+            <a href="#platform" class="hover:text-purple-600 transition-colors" data-i18n="nav_platform">Platform</a>
+            <a href="#faq" class="hover:text-purple-600 transition-colors" data-i18n="nav_faq">FAQ</a>
           </div>
 
           <div class="hidden md:block"></div>
@@ -800,15 +892,15 @@
 
         <div
           class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 gap-4 pt-8 border-t border-gray-50">
-          <p>Truestayinsight © 2026. All Rights Reserved.</p>
-          <p>Designed with hospitality in mind.</p>
+          <p data-i18n="footer_copyright">Truestayinsight © 2026. All Rights Reserved.</p>
+          <p data-i18n="footer_designed">Designed with hospitality in mind.</p>
         </div>
       </div>
     </footer>
 
   </main>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 
 </html>
