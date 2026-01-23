@@ -49,16 +49,52 @@
 <body class="min-h-screen relative overflow-x-hidden font-sans">
 
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 h-20">
+    <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between relative">
+
+      <!-- Language Selector (Left on mobile, Right on desktop) -->
+      <div class="relative group order-1 md:order-4" id="lang-selector">
+        <button
+          class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 hover:border-purple-200 transition-all text-sm font-medium text-gray-600 bg-white/50">
+          <span id="current-lang-flag">🇺🇸</span>
+          <span id="current-lang-name" class="hidden md:inline">EN</span>
+          <svg class="w-4 h-4 text-gray-400 group-hover:rotate-180 transition-transform" fill="none"
+            stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div
+          class="absolute left-0 md:left-auto md:right-0 mt-2 w-32 bg-white rounded-2xl shadow-xl border border-gray-50 opacity-0 invisible transition-all z-[60] py-2 h-auto max-h-[70vh] overflow-y-auto"
+          id="lang-dropdown">
+          <button onclick="changeLanguage('en')"
+            class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇺🇸</span>
+            English</button>
+          <button onclick="changeLanguage('de')"
+            class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇩🇪</span>
+            Deutsch</button>
+          <button onclick="changeLanguage('fr')"
+            class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇫🇷</span>
+            Français</button>
+          <button onclick="changeLanguage('es')"
+            class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇪🇸</span>
+            Español</button>
+          <button onclick="changeLanguage('it')"
+            class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇮🇹</span>
+            Italiano</button>
+        </div>
+      </div>
+
+      <!-- Logo (Centered on mobile icon only, Left on desktop with text) -->
+      <div
+        class="flex items-center gap-2 cursor-pointer order-2 md:order-1 absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <div class="w-8 h-8 purple-gradient rounded-lg flex items-center justify-center text-white font-bold italic">T
         </div>
-        <span class="text-xl font-bold tracking-tight text-gray-900 md:hidden">TSI</span>
         <span class="text-xl font-bold tracking-tight text-gray-900 hidden md:block">Truestayinsight</span>
       </div>
 
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+      <!-- Desktop Nav Links (Hidden on mobile) -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600 md:order-2">
         <a href="#about" class="hover:text-purple-600 transition-colors" data-i18n="nav_about">About</a>
         <a href="#benefits" class="hover:text-purple-600 transition-colors" data-i18n="nav_benefits">Benefits</a>
         <a href="#how-it-works" class="hover:text-purple-600 transition-colors" data-i18n="nav_how_it_works">How it
@@ -67,52 +103,13 @@
         <a href="#faq" class="hover:text-purple-600 transition-colors" data-i18n="nav_faq">FAQ</a>
       </div>
 
-      <div class="flex items-center gap-container">
-        <!-- Desktop Book a call -->
+      <!-- Book a call (Right on both, larger on mobile) -->
+      <div class="order-3 md:order-3">
         <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
-          class="hidden md:block px-6 py-2.5 bg-purple-600 text-white rounded-full text-sm font-semibold hover:bg-purple-700 transition-all shadow-lg shadow-purple-200"
+          class="px-5 py-2.5 md:px-6 md:py-2.5 bg-purple-600 text-white rounded-full text-xs md:text-sm font-semibold hover:bg-purple-700 transition-all shadow-lg shadow-purple-200"
           data-i18n="nav_book_call">
           Book a call
         </button>
-
-        <!-- Mobile Book a call (smaller) -->
-        <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
-          class="md:hidden px-3 py-1.5 bg-purple-600 text-white rounded-full text-[10px] font-bold hover:bg-purple-700 transition-all shadow-md shadow-purple-100 whitespace-nowrap"
-          data-i18n="nav_book_call">
-          Book a call
-        </button>
-
-        <!-- Language Selector -->
-        <div class="relative group" id="lang-selector">
-          <button
-            class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-100 hover:border-purple-200 transition-all text-sm font-medium text-gray-600 bg-white/50">
-            <span id="current-lang-flag">🇺🇸</span>
-            <span id="current-lang-name" class="hidden md:inline">EN</span>
-            <svg class="w-4 h-4 text-gray-400 group-hover:rotate-180 transition-transform" fill="none"
-              stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div
-            class="absolute right-0 mt-2 w-32 bg-white rounded-2xl shadow-xl border border-gray-50 opacity-0 invisible transition-all z-[60] py-2 h-auto max-h-[70vh] overflow-y-auto"
-            id="lang-dropdown">
-            <button onclick="changeLanguage('en')"
-              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇺🇸</span>
-              English</button>
-            <button onclick="changeLanguage('de')"
-              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇩🇪</span>
-              Deutsch</button>
-            <button onclick="changeLanguage('fr')"
-              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇫🇷</span>
-              Français</button>
-            <button onclick="changeLanguage('es')"
-              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇪🇸</span>
-              Español</button>
-            <button onclick="changeLanguage('it')"
-              class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇮🇹</span>
-              Italiano</button>
-          </div>
-        </div>
       </div>
     </div>
   </nav>
