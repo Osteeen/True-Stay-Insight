@@ -66,7 +66,13 @@
         <a href="#faq" class="hover:text-purple-600 transition-colors" data-i18n="nav_faq">FAQ</a>
       </div>
 
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 sm:gap-4">
+        <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
+          class="hidden sm:block px-6 py-2.5 bg-purple-600 text-white rounded-full text-sm font-semibold hover:bg-purple-700 transition-all shadow-lg shadow-purple-200"
+          data-i18n="nav_book_call">
+          Book a call
+        </button>
+
         <!-- Language Selector -->
         <div class="relative group" id="lang-selector">
           <button
@@ -98,12 +104,6 @@
               Italiano</button>
           </div>
         </div>
-
-        <button onclick="window.open('https://calendly.com/austinjohn337/new-meeting', '_blank')"
-          class="px-3 py-2 sm:px-6 sm:py-2.5 bg-purple-600 text-white rounded-full text-[11px] sm:text-sm font-semibold hover:bg-purple-700 transition-all shadow-lg shadow-purple-200"
-          data-i18n="nav_book_call">
-          Book a call
-        </button>
       </div>
     </div>
   </nav>
