@@ -2419,3 +2419,12 @@ html {
 .sentiment-trend-container.is-visible .sentiment-bar:nth-child(7) {
   transition-delay: 0.7s;
 }
+/* Custom Responsive Utilities for Navbar */
+.hidden { display: none !important; }
+.gap-container { gap: 0.5rem; }
+@media (min-width: 768px) {
+  .md\:block { display: block !important; }
+  .md\:inline { display: inline !important; }
+  .md\:flex { display: flex !important; }
+  .gap-container { gap: 1rem; }
+}
