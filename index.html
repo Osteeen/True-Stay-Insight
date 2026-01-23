@@ -79,7 +79,8 @@
             </svg>
           </button>
           <div
-            class="absolute right-0 mt-2 w-32 bg-white rounded-2xl shadow-xl border border-gray-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[60] py-2">
+            class="absolute right-0 mt-2 w-32 bg-white rounded-2xl shadow-xl border border-gray-50 opacity-0 invisible transition-all z-[60] py-2 h-auto max-h-[70vh] overflow-y-auto"
+            id="lang-dropdown">
             <button onclick="changeLanguage('en')"
               class="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-purple-50 hover:text-purple-600 transition-colors flex items-center gap-2"><span>🇺🇸</span>
               English</button>
@@ -109,7 +110,7 @@
 
   <main>
     <!-- Hero -->
-    <section id="home" class="pt-32 pb-32 px-6 relative overflow-hidden">
+    <section id="home" class="pt-44 pb-32 px-6 relative overflow-hidden">
       <div class="max-w-4xl mx-auto text-center relative z-10 fade-in-section">
         <div
           class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-50 text-purple-700 text-xs font-bold mb-8 border border-purple-100 shadow-sm">

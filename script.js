@@ -61,15 +61,10 @@ window.updateLanguage = (lang) => {
 window.changeLanguage = (lang) => {
   window.updateLanguage(lang);
 
-  // Close dropdown automatically
-  const dropdown = document.querySelector('#lang-selector div');
+  // Close dropdown instantly
+  const dropdown = document.getElementById('lang-dropdown');
   if (dropdown) {
-    dropdown.style.opacity = '0';
-    dropdown.style.visibility = 'hidden';
-    setTimeout(() => {
-      dropdown.style.opacity = '';
-      dropdown.style.visibility = '';
-    }, 500);
+    dropdown.classList.add('invisible', 'opacity-0');
   }
 };
 
@@ -267,18 +262,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Language selector mobile toggle
-  const langSelectorBtn = document.querySelector('#lang-selector button');
-  const langDropdown = document.querySelector('#lang-selector div');
+  // Language selector toggle logic
+  const langSelector = document.getElementById('lang-selector');
+  const langDropdown = document.getElementById('lang-dropdown');
 
-  if (langSelectorBtn && langDropdown) {
-    langSelectorBtn.addEventListener('click', (e) => {
+  if (langSelector && langDropdown) {
+    const btn = langSelector.querySelector('button');
+
+    // Toggle logic for mobile/click
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isVisible = !langDropdown.classList.contains('invisible');
-      if (isVisible) {
-        langDropdown.classList.add('invisible', 'opacity-0');
-      } else {
+      const isHidden = langDropdown.classList.contains('invisible');
+      if (isHidden) {
         langDropdown.classList.remove('invisible', 'opacity-0');
+      } else {
+        langDropdown.classList.add('invisible', 'opacity-0');
+      }
+    });
+
+    // Hover logic for desktop
+    langSelector.addEventListener('mouseenter', () => {
+      if (window.innerWidth >= 768) {
+        langDropdown.classList.remove('invisible', 'opacity-0');
+      }
+    });
+
+    langSelector.addEventListener('mouseleave', () => {
+      if (window.innerWidth >= 768) {
+        langDropdown.classList.add('invisible', 'opacity-0');
       }
     });
 
