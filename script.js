@@ -303,20 +303,74 @@ document.addEventListener('DOMContentLoaded', () => {
   detectLanguage();
 });
 
+let sampleAudio = null;
+
 function showSampleMessage() {
   const btn = document.querySelector('[onclick="showSampleMessage()"]');
   if (!btn) return;
-  const originalText = btn.querySelector('.text-sm').innerText;
+  const textEl = btn.querySelector('.text-sm');
+  const iconContainer = document.getElementById('sample-call-icon');
+  const restartBtn = document.getElementById('sample-restart-btn');
+  const waves = document.getElementById('sample-call-waves');
+  const currentLang = document.documentElement.lang || 'en';
 
-  if (btn.dataset.locked) return;
-  btn.dataset.locked = "true";
+  // Get original text from translations if available
+  const originalText = (typeof translations !== 'undefined' && translations[currentLang])
+    ? translations[currentLang].hero_guest_msg
+    : textEl.innerText;
 
-  btn.querySelector('.text-sm').innerText = "Audio coming soon!";
-  btn.querySelector('.text-sm').classList.add('text-purple-600');
+  const playIcon = `<svg class="w-5 h-5 text-emerald-600 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>`;
+  const pauseIcon = `<svg class="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>`;
 
-  setTimeout(() => {
-    btn.querySelector('.text-sm').innerText = originalText;
-    btn.querySelector('.text-sm').classList.remove('text-purple-600');
-    delete btn.dataset.locked;
-  }, 2000);
+  if (!sampleAudio) {
+    sampleAudio = new Audio('dist/TSI Sample Call.mp3');
+    sampleAudio.onended = () => {
+      textEl.innerText = originalText;
+      textEl.classList.remove('text-purple-600');
+      iconContainer.innerHTML = playIcon;
+      btn.dataset.playing = "false";
+      restartBtn.classList.add('hidden');
+      waves.classList.remove('hidden');
+    };
+  }
+
+  // If audio ended, reset to beginning before playing
+  if (sampleAudio.ended) {
+    sampleAudio.currentTime = 0;
+  }
+
+  if (sampleAudio.paused) {
+    sampleAudio.play();
+    textEl.innerText = "Playing sample...";
+    textEl.classList.add('text-purple-600');
+    iconContainer.innerHTML = pauseIcon;
+    btn.dataset.playing = "true";
+    restartBtn.classList.remove('hidden');
+    waves.classList.add('hidden');
+  } else {
+    sampleAudio.pause();
+    textEl.innerText = originalText;
+    textEl.classList.remove('text-purple-600');
+    iconContainer.innerHTML = playIcon;
+    btn.dataset.playing = "false";
+  }
+}
+
+function restartSampleAudio() {
+  if (sampleAudio) {
+    sampleAudio.pause();
+    sampleAudio.currentTime = 0;
+    sampleAudio.play();
+
+    // Ensure UI is in playing state
+    const btn = document.querySelector('[onclick="showSampleMessage()"]');
+    const textEl = btn.querySelector('.text-sm');
+    const iconContainer = document.getElementById('sample-call-icon');
+    const pauseIcon = `<svg class="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>`;
+
+    textEl.innerText = "Playing sample...";
+    textEl.classList.add('text-purple-600');
+    iconContainer.innerHTML = pauseIcon;
+    btn.dataset.playing = "true";
+  }
 }

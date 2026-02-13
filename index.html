@@ -156,10 +156,12 @@
           <div onclick="showSampleMessage()"
             class="flex items-center gap-4 bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-purple-400 hover:scale-105 p-3 pr-8 rounded-2xl shadow-xl shadow-gray-200/40 cursor-pointer transition-all active:scale-95 group order-1 md:order-1">
             <div
-              class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center relative transition-colors pulse-emerald">
-              <div
-                class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-emerald-600 border-b-[8px] border-b-transparent ml-1">
-              </div>
+              class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center relative transition-colors pulse-emerald group-hover:bg-emerald-100"
+              id="sample-call-icon">
+              <!-- Default Play Icon -->
+              <svg class="w-5 h-5 text-emerald-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
             </div>
             <div class="text-left">
               <div class="text-xs font-bold text-gray-400 uppercase tracking-tight" data-i18n="hero_sample_call">Sample
@@ -167,10 +169,20 @@
               <div class="text-sm font-semibold text-gray-900 leading-tight" data-i18n="hero_guest_msg">Guest: "Room
                 service was..."</div>
             </div>
-            <div class="flex gap-0.5 items-end h-4 ml-2">
-              <div class="w-1 bg-emerald-300 rounded-full h-2 animate-bounce"></div>
-              <div class="w-1 bg-emerald-400 rounded-full h-4 animate-bounce" style="animation-delay: 75ms"></div>
-              <div class="w-1 bg-emerald-500 rounded-full h-3 animate-bounce" style="animation-delay: 150ms"></div>
+            <div class="flex items-center gap-3">
+              <div class="flex gap-0.5 items-end h-4" id="sample-call-waves">
+                <div class="w-1 bg-emerald-300 rounded-full h-2 animate-bounce"></div>
+                <div class="w-1 bg-emerald-400 rounded-full h-4 animate-bounce" style="animation-delay: 75ms"></div>
+                <div class="w-1 bg-emerald-500 rounded-full h-3 animate-bounce" style="animation-delay: 150ms"></div>
+              </div>
+              <button onclick="event.stopPropagation(); restartSampleAudio()" id="sample-restart-btn"
+                class="hidden p-1.5 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-purple-600"
+                title="Restart Audio">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -921,7 +933,7 @@
 
   </main>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 
 </html>
