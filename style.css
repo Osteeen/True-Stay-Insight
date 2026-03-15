@@ -2395,9 +2395,15 @@ html {
   z-index: -1;
 }
 
-.pulse-emerald svg {
+.play-triangle {
   position: relative;
   z-index: 1;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 13px;
+  border-color: transparent transparent transparent #059669;
+  margin-left: 3px;
 }
 
 /* Sentiment Bar Animation */

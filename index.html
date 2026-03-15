@@ -158,10 +158,8 @@
             <div
               class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center relative transition-colors pulse-emerald group-hover:bg-emerald-100"
               id="sample-call-icon">
-              <!-- Default Play Icon -->
-              <svg class="w-5 h-5 text-emerald-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              <!-- Default Play Icon (CSS triangle — avoids Safari SVG rendering bug) -->
+              <div class="play-triangle"></div>
             </div>
             <div class="text-left">
               <div class="text-xs font-bold text-gray-400 uppercase tracking-tight" data-i18n="hero_sample_call">Sample
