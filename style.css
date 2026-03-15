@@ -2378,13 +2378,17 @@ html {
 }
 
 .pulse-emerald {
-  animation: pulse-emerald 2s infinite;
+  position: relative;
 }
 
-/* Fix Safari not rendering SVGs inside CSS-animated elements on initial paint */
-.pulse-emerald svg {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+/* Move animation to pseudo-element so SVG is never inside an animated element (fixes Safari) */
+.pulse-emerald::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  animation: pulse-emerald 2s infinite;
+  pointer-events: none;
 }
 
 /* Sentiment Bar Animation */
