@@ -126,14 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const marqueeContent = document.getElementById('marquee-content');
     if (!marqueeContent) return;
 
-    marqueeContent.innerHTML = [...items, ...items].map(item => {
+    const renderItem = (item, hidden) => {
       const isPositive = item.sentiment === 'POSITIVE' || item.sentiment === 'POSITIF' || item.sentiment === 'POSITIVO' || item.sentiment === 'POSITIV';
       const sentimentClass = isPositive
         ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/5'
         : 'text-rose-400 border-rose-400/30 bg-rose-400/5';
-
       return `
-      <div class="flex items-center gap-4 bg-[#101628] border border-white/10 px-6 py-3 rounded-full hover:border-purple-500/50 transition-all cursor-default group">
+      <div class="flex items-center gap-4 bg-[#101628] border border-white/10 px-6 py-3 rounded-full hover:border-purple-500/50 transition-all cursor-default group"${hidden ? ' aria-hidden="true"' : ''}>
         <span class="text-gray-500 text-xs font-medium font-mono">${item.location}</span>
         <span class="text-gray-300 text-sm italic">"${item.text}"</span>
         <span class="text-[10px] font-bold px-2.5 py-1 rounded border ${sentimentClass}">
@@ -141,7 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </span>
       </div>
     `;
-    }).join('');
+    };
+    marqueeContent.innerHTML = [
+      ...items.map(item => renderItem(item, false)),
+      ...items.map(item => renderItem(item, true)),
+    ].join('');
   };
 
   window.renderFAQ = (categories) => {
