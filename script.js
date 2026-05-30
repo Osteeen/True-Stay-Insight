@@ -328,7 +328,7 @@ function showSampleMessage() {
   const pauseIcon = `<svg class="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>`;
 
   if (!sampleAudio) {
-    sampleAudio = new Audio('dist/TSI Sample Call.mp3');
+    sampleAudio = new Audio('dist/local_recording.wav');
     sampleAudio.onended = () => {
       textEl.innerText = originalText;
       textEl.classList.remove('text-purple-600');
