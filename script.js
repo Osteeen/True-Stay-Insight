@@ -5,7 +5,8 @@ const flags = {
   fr: '🇫🇷',
   es: '🇪🇸',
   it: '🇮🇹',
-  de: '🇩🇪'
+  de: '🇩🇪',
+  zh: '🇨🇳'
 };
 
 const langNames = {
@@ -13,7 +14,8 @@ const langNames = {
   fr: 'FR',
   es: 'ES',
   it: 'IT',
-  de: 'DE'
+  de: 'DE',
+  zh: 'ZH'
 };
 
 window.updateLanguage = (lang) => {
@@ -127,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!marqueeContent) return;
 
     const renderItem = (item, hidden) => {
-      const isPositive = item.sentiment === 'POSITIVE' || item.sentiment === 'POSITIF' || item.sentiment === 'POSITIVO' || item.sentiment === 'POSITIV';
+      const isPositive = item.sentiment === 'POSITIVE' || item.sentiment === 'POSITIF' || item.sentiment === 'POSITIVO' || item.sentiment === 'POSITIV' || item.sentiment === '正面';
       const sentimentClass = isPositive
         ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/5'
         : 'text-rose-400 border-rose-400/30 bg-rose-400/5';
