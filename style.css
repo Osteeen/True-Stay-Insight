@@ -2406,6 +2406,34 @@ html {
   margin-left: 3px;
 }
 
+/* Play / Pause CSS icons — no SVG, works on all mobile browsers */
+.play-triangle {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 14px solid #059669;
+  margin-left: 3px;
+  flex-shrink: 0;
+}
+
+.pause-bars {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pause-bars::before,
+.pause-bars::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 16px;
+  background: #059669;
+  border-radius: 2px;
+}
+
 /* Sentiment Bar Animation */
 .sentiment-bar {
   transform: scaleY(0);
