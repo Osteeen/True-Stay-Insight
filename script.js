@@ -310,36 +310,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let sampleAudio = null;
 
+function setPlayIcon() {
+  document.getElementById('icon-play').classList.remove('hidden');
+  document.getElementById('icon-pause').classList.add('hidden');
+}
+
+function setPauseIcon() {
+  document.getElementById('icon-play').classList.add('hidden');
+  document.getElementById('icon-pause').classList.remove('hidden');
+}
+
 function showSampleMessage() {
   const btn = document.querySelector('[onclick="showSampleMessage()"]');
   if (!btn) return;
   const textEl = btn.querySelector('.text-sm');
-  const iconContainer = document.getElementById('sample-call-icon');
   const restartBtn = document.getElementById('sample-restart-btn');
   const waves = document.getElementById('sample-call-waves');
   const currentLang = document.documentElement.lang || 'en';
 
-  // Get original text from translations if available
   const originalText = (typeof translations !== 'undefined' && translations[currentLang])
     ? translations[currentLang].hero_guest_msg
     : textEl.innerText;
-
-  const playIcon = `<div style="width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:14px solid #059669;margin-left:3px;flex-shrink:0"></div>`;
-  const pauseIcon = `<div style="display:flex;gap:3px;align-items:center;flex-shrink:0"><div style="width:4px;height:16px;background:#059669;border-radius:2px"></div><div style="width:4px;height:16px;background:#059669;border-radius:2px"></div></div>`;
 
   if (!sampleAudio) {
     sampleAudio = new Audio('dist/local_recording.wav');
     sampleAudio.onended = () => {
       textEl.innerText = originalText;
       textEl.classList.remove('text-purple-600');
-      iconContainer.innerHTML = playIcon;
+      setPlayIcon();
       btn.dataset.playing = "false";
       restartBtn.classList.add('hidden');
       waves.classList.remove('hidden');
     };
   }
 
-  // If audio ended, reset to beginning before playing
   if (sampleAudio.ended) {
     sampleAudio.currentTime = 0;
   }
@@ -348,7 +352,7 @@ function showSampleMessage() {
     sampleAudio.play();
     textEl.innerText = "Playing sample...";
     textEl.classList.add('text-purple-600');
-    iconContainer.innerHTML = pauseIcon;
+    setPauseIcon();
     btn.dataset.playing = "true";
     restartBtn.classList.remove('hidden');
     waves.classList.add('hidden');
@@ -356,7 +360,7 @@ function showSampleMessage() {
     sampleAudio.pause();
     textEl.innerText = originalText;
     textEl.classList.remove('text-purple-600');
-    iconContainer.innerHTML = playIcon;
+    setPlayIcon();
     btn.dataset.playing = "false";
   }
 }
@@ -367,15 +371,11 @@ function restartSampleAudio() {
     sampleAudio.currentTime = 0;
     sampleAudio.play();
 
-    // Ensure UI is in playing state
     const btn = document.querySelector('[onclick="showSampleMessage()"]');
     const textEl = btn.querySelector('.text-sm');
-    const iconContainer = document.getElementById('sample-call-icon');
-    const pauseIcon = `<svg class="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>`;
-
     textEl.innerText = "Playing sample...";
     textEl.classList.add('text-purple-600');
-    iconContainer.innerHTML = pauseIcon;
+    setPauseIcon();
     btn.dataset.playing = "true";
   }
 }
